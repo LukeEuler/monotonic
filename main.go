@@ -12,12 +12,7 @@ import (
 type i64 int64
 
 func main() {
-	n := 26
-	list := make([]i64, 0, n)
-	for i := 0; i < n; i++ {
-		v, _ := rand.Int(rand.Reader, big.NewInt(100))
-		list = append(list, i64(v.Int64()))
-	}
+	list := randomList(26)
 	// list := []i64{3, -2, 4, 7, 0, 3, 1, 9, 66, 2, 7, 5, 13, 11, 10, 9}
 	// list := []i64{19, 17, 18, 15, 13, 0, 2, 4, 6, 8}
 	// list := []i64{1, 1, 2, 1, 1, 3, 1}
@@ -26,6 +21,15 @@ func main() {
 	m := NewNonStrictlyMonotonicByList(list)
 	m.ShowList()
 	m.ShowMaxSubList()
+}
+
+func randomList(n int) []i64 {
+	list := make([]i64, 0, n)
+	for i := 0; i < n; i++ {
+		v, _ := rand.Int(rand.Reader, big.NewInt(100))
+		list = append(list, i64(v.Int64()))
+	}
+	return list
 }
 
 func NewNonStrictlyMonotonic(value i64) *NonStrictlyMonotonic {
